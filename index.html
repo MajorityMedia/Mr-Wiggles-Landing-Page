@@ -8,7 +8,7 @@
   <meta property="og:title" content="Meet Mr. Wiggles: The Cat Who Follows Jesus (For the Snacks!)">
   <meta property="og:description" content="A hilarious, faith-aware animated series for families who want laughs with heart.">
   <meta property="og:image" content="thumbnail.jpg">
-  <meta property="og:url" content="https://yourusername.github.io/mr-wiggles-site">
+  <meta property="og:url" content="https://mr-wiggles-site.vercel.app">
   <meta property="og:type" content="website">
   <style>
     body {
@@ -145,11 +145,15 @@
     <section id="signup">
       <h2>Be Part of the Mr. Wiggles Movement</h2>
       <p>Sign up to get exclusive updates, vote on Mr. Wiggles’ next adventures, and help shape the future of faith-driven entertainment.</p>
-      <form class="signup-form" onsubmit="handleSubmit(event)">
-        <input type="email" placeholder="Email Address *" required>
-        <input type="text" placeholder="First Name">
-        <input type="text" placeholder="Last Name">
-        <button type="submit">Join Now</button>
+      <form class="signup-form" action="https://mailchi.mp/9e55ea7780d1/q79jnk4a42" method="post" name="mc-embedded-subscribe-form" target="_blank">
+        <input type="email" name="EMAIL" placeholder="Email Address *" required>
+        <input type="text" name="FNAME" placeholder="First Name">
+        <input type="text" name="LNAME" placeholder="Last Name">
+        <button type="submit" name="subscribe">Join Now</button>
+        <!-- Anti-spam field, hidden -->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+          <input type="text" name="b_9e55ea7780d1_q79jnk4a42" tabindex="-1" value="">
+        </div>
       </form>
     </section>
 
@@ -182,11 +186,5 @@
     </div>
   </footer>
   <script src="https://vercel.com/scripts/analytics/inject.min.js" defer></script>
-  <script>
-    function handleSubmit(event) {
-      event.preventDefault();
-      alert('Thanks for signing up! We’ll follow up soon.');
-    }
-  </script>
 </body>
 </html>
