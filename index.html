@@ -110,6 +110,24 @@
       color: #e67e22;
       margin-top: 5px;
     }
+    .success-message {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 10px;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+      margin: 10px 0;
+      display: none;
+    }
+    .error-message {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 10px;
+      border: 1px solid #f5c6cb;
+      border-radius: 5px;
+      margin: 10px 0;
+      display: none;
+    }
     @media (max-width: 768px) {
       header, main, footer {
         padding: 10px;
@@ -118,7 +136,7 @@
         flex: 1 1 100%;
       }
       .video-container {
-        max-width: 95vw; /* Larger width on mobile */
+        max-width: 95vw;
         margin: 0 auto;
       }
       .video-container video {
@@ -144,16 +162,52 @@
   <main>
     <section id="signup">
       <h2>Be Part of the Mr. Wiggles Movement</h2>
-      <p>Sign up to get exclusive updates, vote on Mr. Wiggles’ next adventures, and help shape the future of faith-driven entertainment.</p>
-      <form class="signup-form" action="https://mailchi.mp/9e55ea7780d1/q79jnk4a42" method="post" name="mc-embedded-subscribe-form" target="_blank">
-        <input type="email" name="EMAIL" placeholder="Email Address *" required>
-        <input type="text" name="FNAME" placeholder="First Name">
-        <input type="text" name="LNAME" placeholder="Last Name">
-        <button type="submit" name="subscribe">Join Now</button>
-        <!-- Anti-spam field, hidden -->
+      <p>Sign up to get exclusive updates, vote on Mr. Wiggles' next adventures, and help shape the future of faith-driven entertainment.</p>
+      
+      <div id="success-message" class="success-message">
+        Thanks for subscribing! Check your email for confirmation.
+      </div>
+      <div id="error-message" class="error-message">
+        Oops! Something went wrong. Please try again.
+      </div>
+      
+      <form class="signup-form" 
+            action="https://app.us4.list-manage.com/subscribe/post?u=ca0b20880c4b7009f8c6319e9&id=60a3c9abaa&f_id=003a04e3f0" 
+            method="post" 
+            id="mc-embedded-subscribe-form" 
+            name="mc-embedded-subscribe-form" 
+            class="validate"
+            target="_blank" 
+            novalidate>
+        
+        <input type="email" 
+               value="" 
+               name="EMAIL" 
+               class="required email" 
+               id="mce-EMAIL" 
+               placeholder="Email Address *" 
+               required>
+               
+        <input type="text" 
+               value="" 
+               name="FNAME" 
+               class="" 
+               id="mce-FNAME" 
+               placeholder="First Name">
+               
+        <input type="text" 
+               value="" 
+               name="LNAME" 
+               class="" 
+               id="mce-LNAME" 
+               placeholder="Last Name">
+        
+        <!-- Real people should not fill this in and expect good things -->
         <div style="position: absolute; left: -5000px;" aria-hidden="true">
-          <input type="text" name="b_9e55ea7780d1_q79jnk4a42" tabindex="-1" value="">
+          <input type="text" name="b_ca0b20880c4b7009f8c6319e9_60a3c9abaa" tabindex="-1" value="">
         </div>
+        
+        <input type="submit" value="Join Now" name="subscribe" id="mc-embedded-subscribe" class="button">
       </form>
     </section>
 
@@ -171,7 +225,7 @@
         </div>
         <div class="feature">
           <h3>Fan-Driven Stories</h3>
-          <p>With our platform, YOU pitch Mr. Wiggles’ next adventure—anywhere from the Bible to history!</p>
+          <p>With our platform, YOU pitch Mr. Wiggles' next adventure—anywhere from the Bible to history!</p>
         </div>
       </div>
     </section>
@@ -185,6 +239,15 @@
       <a href="https://youtube.com">YouTube</a>
     </div>
   </footer>
-  <script src="https://vercel.com/scripts/analytics/inject.min.js" defer></script>
+
+  <script>
+    // Optional: Handle form submission feedback
+    document.getElementById('mc-embedded-subscribe-form').addEventListener('submit', function(e) {
+      // You can add custom handling here if needed
+      setTimeout(function() {
+        document.getElementById('success-message').style.display = 'block';
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
