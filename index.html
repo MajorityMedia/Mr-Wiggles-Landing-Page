@@ -11,8 +11,12 @@
   <meta property="og:url" content="https://mr-wiggles-site.vercel.app">
   <meta property="og:type" content="website">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
       line-height: 1.6;
       color: #333;
@@ -20,6 +24,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      position: relative;
     }
     header, main, footer {
       padding: 20px;
@@ -177,7 +182,6 @@
             id="mc-embedded-subscribe-form" 
             name="mc-embedded-subscribe-form" 
             class="validate"
-            target="_blank" 
             novalidate>
         
         <input type="email" 
@@ -241,12 +245,37 @@
   </footer>
 
   <script>
-    // Optional: Handle form submission feedback
-    document.getElementById('mc-embedded-subscribe-form').addEventListener('submit', function(e) {
-      // You can add custom handling here if needed
-      setTimeout(function() {
-        document.getElementById('success-message').style.display = 'block';
-      }, 1000);
+    // Ensure page loads at top
+    window.addEventListener('load', function() {
+      window.scrollTo(0, 0);
+    });
+
+    // Handle form submission
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('mc-embedded-subscribe-form');
+      const successMsg = document.getElementById('success-message');
+      const errorMsg = document.getElementById('error-message');
+      
+      form.addEventListener('submit', function(e) {
+        // Hide any existing messages
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+        
+        // Create hidden iframe for form submission
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.name = 'mc-form-target';
+        document.body.appendChild(iframe);
+        
+        // Set form target to iframe
+        form.target = 'mc-form-target';
+        
+        // Show success message after brief delay
+        setTimeout(function() {
+          successMsg.style.display = 'block';
+          form.reset();
+        }, 1000);
+      });
     });
   </script>
 </body>
