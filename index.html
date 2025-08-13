@@ -145,12 +145,12 @@
     <section id="signup">
       <h2>Be Part of the Mr. Wiggles Movement</h2>
       <p>Sign up to get exclusive updates, vote on Mr. Wiggles’ next adventures, and help shape the future of faith-driven entertainment.</p>
-      <div class="signup-form">
+      <form class="signup-form" onsubmit="handleSubmit(event)">
         <input type="email" placeholder="Email Address *" required>
         <input type="text" placeholder="First Name">
         <input type="text" placeholder="Last Name">
         <button type="submit">Join Now</button>
-      </div>
+      </form>
     </section>
 
     <section>
@@ -182,5 +182,11 @@
     </div>
   </footer>
   <script src="https://vercel.com/scripts/analytics/inject.min.js" defer></script>
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      alert('Thanks for signing up! We’ll follow up soon.');
+    }
+  </script>
 </body>
 </html>
