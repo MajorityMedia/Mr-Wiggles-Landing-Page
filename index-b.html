@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Mr. Wiggles: The Cat Who Follows Jesus (For the Snacks!)</title>
+  <!-- Open Graph Meta Tags for Link Preview -->
+  <meta property="og:title" content="Meet Mr. Wiggles: The Cat Who Follows Jesus (For the Snacks!)">
+  <meta property="og:description" content="A hilarious, faith-aware animated series for families who want laughs with heart.">
+  <meta property="og:image" content="thumbnail.jpg">
+  <meta property="og:url" content="https://mr-wiggles-site.vercel.app">
+  <meta property="og:type" content="website">
+  
+  <!-- Vercel Analytics -->
+  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+  
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+    }
+    header, main, footer {
+      padding: 20px;
+      text-align: center;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    .hero-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .hero-section h1 {
+      color: white;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .hero-tagline {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 800px;
+      margin: 20px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 15px 30px;
+      background: linear-gradient(45deg, #ff6b35, #f7931e);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      margin: 20px 10px;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    }
+    .urgency-text {
+      color: #ff6b35;
+      font-weight: bold;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+    .social-proof {
+      background: white;
+      padding: 40px 20px;
+      margin: 20px 0;
+    }
+    .stat-box {
+      display: inline-block;
+      margin: 10px 20px;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2em;
+      font-weight: bold;
+      color: #e67e22;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.9em;
+      color: #666;
+    }
+    .testimonials {
+      background: #f8f9fa;
+      padding: 40px 20px;
+    }
+    .testimonial {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      font-style: italic;
+      position: relative;
+    }
+    .testimonial::before {
+      content: '"';
+      font-size: 4em;
+      color: #e67e22;
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-family: serif;
+    }
+    .testimonial-author {
+      text-align: right;
+      font-weight: bold;
+      color: #666;
+      margin-top: 15px;
+      font-style: normal;
+    }
+    .signup-form {
+      max-width: 500px;
+      margin: 20px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    }
+    .form-header {
+      margin-bottom: 20px;
+    }
+    .form-header h3 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    .benefit-list {
+      text-align: left;
+      margin: 15px 0;
+    }
+    .benefit-list li {
+      margin: 5px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .benefit-list li::before {
+      content: "✓";
+      color: #27ae60;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    .signup-form input, .signup-form button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+    .signup-form input:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    }
+    .signup-form button {
+      background: linear-gradient(45deg, #27ae60, #2ecc71);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: transform 0.3s;
+    }
+    .signup-form button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+    .feature {
+      flex: 1 1 300px;
+      padding: 25px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+    .feature-icon {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+    }
+    .guarantee {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px 20px;
+      margin: 40px 0;
+      border-radius: 15px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    footer {
+      margin-top: auto;
+      background-color: #2c3e50;
+      color: white;
+    }
+    footer a {
+      color: #e67e22;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .sound-prompt {
+      font-style: italic;
+      color: #f39c12;
+      margin-top: 5px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+    .success-message {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border: 1px solid #c3e6cb;
+      border-radius: 8px;
+      margin: 10px 0;
+      display: none;
+    }
+    .error-message {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      border: 1px solid #f5c6cb;
+      border-radius: 8px;
+      margin: 10px 0;
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 20px 10px;
+      }
+      .hero-section h1 {
+        font-size: 1.8em;
+      }
+      .feature {
+        flex: 1 1 100%;
+      }
+      .video-container {
+        max-width: 95vw;
+        margin: 20px auto;
+      }
+      .stat-box {
+        display: block;
+        margin: 15px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-section">
+    <h1>Meet Mr. Wiggles: The Cat Who Follows Jesus (For the Snacks!)</h1>
+    <p class="hero-tagline">The faith-based animated series that's taking families by storm!</p>
+    <p class="sound-prompt">🔊 Click for sound - you won't regret it!</p>
+    
+    <div class="video-container">
+      <video autoplay muted loop playsinline controls>
+        <source src="mr_wiggles_trailer.mp4" type="video/mp4">
+        Your browser does not support the video tag. <a href="mr_wiggles_trailer.mp4">Download the video</a> to watch it.
+      </video>
+    </div>
+    
+    <a href="#signup" class="cta-button">Join the Movement - It's FREE!</a>
+    <div class="urgency-text">⚡ Limited time: Get exclusive behind-the-scenes content!</div>
+  </div>
+
+  <div class="social-proof">
+    <h2>Join Thousands of Families Already Loving Mr. Wiggles!</h2>
+    <div class="stat-box">
+      <span class="stat-number">15K+</span>
+      <span class="stat-label">Happy Families</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number">2.3M</span>
+      <span class="stat-label">Video Views</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number">4.9★</span>
+      <span class="stat-label">Parent Rating</span>
+    </div>
+  </div>
+
+  <section class="testimonials">
+    <h2>What Families Are Saying</h2>
+    
+    <div class="testimonial">
+      My kids ask to watch Mr. Wiggles every day! Finally, something that's hilarious AND teaches good values. It's like finding a unicorn in the world of kids' entertainment.
+      <div class="testimonial-author">— Sarah M., Mom of 3</div>
+    </div>
+    
+    <div class="testimonial">
+      I was skeptical at first, but Mr. Wiggles had me cracking up within 30 seconds. My 8-year-old daughter loves it, and honestly, so do I. It's smart comedy that respects faith.
+      <div class="testimonial-author">— Mike D., Father & Youth Pastor</div>
+    </div>
+    
+    <div class="testimonial">
+      Finally! Content we can all watch together without anyone being bored or offended. Mr. Wiggles is pure genius - my grandkids and I bond over every episode.
+      <div class="testimonial-author">— Patricia L., Grandmother of 5</div>
+    </div>
+  </section>
+
+  <main>
+    <section id="signup">
+      <div class="signup-form">
+        <div class="form-header">
+          <h3>🎉 Join the Mr. Wiggles Family!</h3>
+          <p>Get exclusive access and help shape the future of faith-driven entertainment</p>
+          
+          <ul class="benefit-list">
+            <li>Early access to new episodes</li>
+            <li>Vote on Mr. Wiggles' next adventures</li>
+            <li>Behind-the-scenes content & bloopers</li>
+            <li>Exclusive merchandise discounts</li>
+            <li>Join a community of 15,000+ families</li>
+          </ul>
+        </div>
+        
+        <div id="success-message" class="success-message">
+          🎉 Welcome to the family! Check your email for your exclusive welcome package.
+        </div>
+        <div id="error-message" class="error-message">
+          Oops! Something went wrong. Please try again or contact us directly.
+        </div>
+        
+        <form action="https://app.us4.list-manage.com/subscribe/post?u=ca0b20880c4b7009f8c6319e9&id=60a3c9abaa&f_id=003a04e3f0" 
+              method="post" 
+              id="mc-embedded-subscribe-form" 
+              name="mc-embedded-subscribe-form" 
+              class="validate"
+              novalidate>
+          
+          <input type="email" 
+                 value="" 
+                 name="EMAIL" 
+                 class="required email" 
+                 id="mce-EMAIL" 
+                 placeholder="Your Email Address *" 
+                 required>
+                 
+          <input type="text" 
+                 value="" 
+                 name="FNAME" 
+                 class="" 
+                 id="mce-FNAME" 
+                 placeholder="First Name (so Mr. Wiggles knows who to thank!)">
+                 
+          <input type="text" 
+                 value="" 
+                 name="LNAME" 
+                 class="" 
+                 id="mce-LNAME" 
+                 placeholder="Last Name">
+          
+          <!-- Real people should not fill this in -->
+          <div style="position: absolute; left: -5000px;" aria-hidden="true">
+            <input type="text" name="b_ca0b20880c4b7009f8c6319e9_60a3c9abaa" tabindex="-1" value="">
+          </div>
+          
+          <input type="submit" value="YES! Count Me In! 🐱" name="subscribe" id="mc-embedded-subscribe" class="button">
+        </form>
+        
+        <div class="urgency-text">⏰ Join now - limited spots for founding members!</div>
+      </div>
+    </section>
+
+    <div class="guarantee">
+      <h3>🛡️ 100% Satisfaction Guarantee</h3>
+      <p>Not loving Mr. Wiggles? Unsubscribe anytime with one click. But we're confident your family will be asking for more episodes within minutes!</p>
+    </div>
+
+    <section>
+      <h2>Why Families Choose Mr. Wiggles</h2>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">✝️</div>
+          <h3>Faith-Aware Fun</h3>
+          <p>Irreverent but never mocking, Mr. Wiggles brings ancient stories to life with humor and heart that respects your family's values.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📱</div>
+          <h3>Perfect for Sharing</h3>
+          <p>Bite-sized episodes built for TikTok, YouTube, and Instagram - content your kids will actually want to share (and you'll be proud of).</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎭</div>
+          <h3>You Shape the Story</h3>
+          <p>With our platform, YOU pitch Mr. Wiggles' next adventure—anywhere from biblical times to historical moments your family wants to explore!</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Majority Media. All rights reserved. | Made with ❤️ for families who value faith and laughter</p>
+    <div>
+      <a href="https://instagram.com">📸 Instagram</a>
+      <a href="https://tiktok.com">🎵 TikTok</a>
+      <a href="https://youtube.com">▶️ YouTube</a>
+    </div>
+  </footer>
+
+  <script>
+    // Ensure page loads at top
+    window.addEventListener('load', function() {
+      window.scrollTo(0, 0);
+    });
+
+    // Handle form submission with better UX
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('mc-embedded-subscribe-form');
+      const successMsg = document.getElementById('success-message');
+      const errorMsg = document.getElementById('error-message');
+      const submitBtn = document.getElementById('mc-embedded-subscribe');
+      
+      form.addEventListener('submit', function(e) {
+        // Hide any existing messages
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+        
+        // Show loading state
+        const originalText = submitBtn.value;
+        submitBtn.value = 'Joining the Family...';
+        submitBtn.disabled = true;
+        
+        // Create hidden iframe for form submission
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.name = 'mc-form-target';
+        document.body.appendChild(iframe);
+        
+        // Set form target to iframe
+        form.target = 'mc-form-target';
+        
+        // Show success message after brief delay
+        setTimeout(function() {
+          successMsg.style.display = 'block';
+          form.reset();
+          submitBtn.value = originalText;
+          submitBtn.disabled = false;
+          
+          // Scroll to success message
+          successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 1500);
+      });
+      
+      // Add some interactive elements
+      const ctaButtons = document.querySelectorAll('.cta-button');
+      ctaButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Add a little animation feedback
+          this.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            this.style.transform = 'scale(1)';
+          }, 150);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
